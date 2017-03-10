@@ -3,9 +3,8 @@ var uuid = require("uuid");
 var database = require("../database");
 var TopicItem = require("../Models/TopicItem");
 var LinkItem = require("../Models/LinkItem").LinkItem;
-var UserItem = require("../Models/UserItem").UserItem;
-var bcrypt = require("bcrypt");
-var jwt = require('jsonwebtoken');
+
+var Security = require('./security/security');
 
 // TODO: Find a better way to keep this
 var secret = 'ilo65DVetcNpnRio8Swl8B7DZdOz_8zyDXClZbPGa8fMjWWV48eMHn9DszSyXx2P';
@@ -120,32 +119,6 @@ module.exports = (app) => {
     return res.send(link);
   });
 
-  app.post('/api/login', (req, res) => {
-    console.log(req.body);
-    UserItem.findOne({ email: req.body.email },
-      function (err, user) {
-
-        if (err)
-          return res.status(500)
-
-        if (!user)
-          return res.status(401).send({ errorMessage: 'Credentials not found' });
-
-        bcrypt.compare(req.body.password, user.passwordHash, function (err, doesMatch) {
-          if (doesMatch) {
-            var claims = {
-              sub: 'user9876',
-              iss: 'https://mytrustyapp.com',
-              permissions: 'upload-photos'
-            };
-            var token = jwt.sign(claims, secret);
-            return res.send({ token: token });
-          } else {
-            return res.status(401).send({ errorMessage: 'Credentials are not valid' });
-          }
-        });
-      }
-    );
-  });
+  Security(app);
 
 };
