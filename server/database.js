@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Promise = require("bluebird");
 
-var uri = "mongodb://127.0.0.1/links";
+var uri = "mongodb://127.0.0.1/finances";
 console.log("Got Uri...");
 
 mongoose.Promise = require('bluebird');
@@ -13,6 +13,8 @@ var db = mongoose.connection;
 console.log("Created db...");
 
 var TopicItem = require("./Models/TopicItem");
+var LinkItem = require("./Models/LinkItem");
+var UserItem = require("./Models/UserItem").UserItem;
 
 db.once("open", () => {
 
