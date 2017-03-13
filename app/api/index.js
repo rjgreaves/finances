@@ -25,6 +25,7 @@ export function createLink({ topicId, url, description }) {
 }
 
 export function login(email, password) {
-    return ApiConfig.fetchPost('login', `email=${email}&password=${password}`)
+    var headers = ApiConfig.getHeader(false, "application/x-www-form-urlencoded");
+    return ApiConfig.fetchPost('login', `email=${email}&password=${password}`, headers)
         .then(response => response.json());
 }

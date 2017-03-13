@@ -1,9 +1,10 @@
 var baseUrl = 'http://localhost:3000/api/';
 
-export function getHeader(isAuthenticated = false){
+export function getHeader(isAuthenticated = false, contentType = "application/json"){
     let headers = {
         Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': contentType
+        //'Content-Type': 'application/x-www-form-urlencoded'
     };
     if (isAuthenticated) {
         headers['x-access-token'] = `${localStorage.getItem('id_token')}`
@@ -11,10 +12,10 @@ export function getHeader(isAuthenticated = false){
     return headers;
 }
 
-export function getConfig(method, body, isAuthenticated = false) {
+export function getConfig(method, body, headers = null) {
     let config = {
         method: method,
-        headers: getHeader(isAuthenticated),
+        headers: headers || getHeader(isAuthenticated),
         body: body
     }
     return config;
@@ -24,12 +25,12 @@ export function getUrl(url){
     return `${baseUrl}${url}`;
 }
 
-export function fetchGet(url, body, isAuthenticated = false){
-    var config = getConfig("GET", body, isAuthenticated);
+export function fetchGet(url, body, headers = null){
+    var config = getConfig("GET", body, headers);
     return fetch(getUrl(url), config);
 }
 
-export function fetchPost(url, body, isAuthenticated = false){
-    var config = getConfig("POST", body, isAuthenticated);
+export function fetchPost(url, body, headers = null){
+    var config = getConfig("POST", body, headers);
     return fetch(getUrl(url), config);
 }
