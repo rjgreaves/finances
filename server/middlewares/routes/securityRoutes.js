@@ -7,7 +7,7 @@ module.exports = {
   registerRoutes(app) {
 
     app.post('/api/login', (req, res) => {
-      console.log(req.body);
+
       UserItem.findOne({ email: req.body.email },
         function (err, user) {
 

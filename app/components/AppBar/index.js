@@ -9,8 +9,9 @@ import { Link } from 'react-router';
 import IconButton from '../IconButton';
 import styles from './styles.css';
 
-function AppBar({ toggleDrawer, email }) {
-  const loginLink = email || (<Link to="/login"> login </Link>)
+function AppBar({ toggleDrawer, logout, user }) {
+  const loginLink = user.isAuthenticated ? user.email : (<Link to="/login"> login </Link>);
+  const logoutLink = user.isAuthenticated ? (<a href="#" onClick={logout}>logout</a>) : "";
   return (
     <div className={styles.appBar}>
       <IconButton
@@ -28,6 +29,7 @@ function AppBar({ toggleDrawer, email }) {
       className={styles.linkContainer}
       >
         {loginLink}
+        {logoutLink}
       </div>
     </div>
   );
@@ -35,7 +37,8 @@ function AppBar({ toggleDrawer, email }) {
 
 AppBar.propTypes = {
   toggleDrawer: React.PropTypes.func.isRequired,
-  email: React.PropTypes.string,
+  logout: React.PropTypes.func.isRequired,
+  user: React.PropTypes.object,
 }
 
 export default AppBar;

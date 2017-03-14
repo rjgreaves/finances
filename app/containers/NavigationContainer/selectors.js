@@ -11,7 +11,6 @@ const selectNavigationContainerDomain = () => state => state.get('navigationCont
  * Other specific selectors
  */
 
-
 /**
  * Default selector used by NavigationContainer
  */

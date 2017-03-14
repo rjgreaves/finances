@@ -9,7 +9,7 @@ import {
   REQUEST_LINKS_SUCCEEDED
 } from './constants';
 
-import { 
+import {
   ADD_LINK_SUCCESS,
 } from '../LinkFormContainer/constants';
 
@@ -19,7 +19,11 @@ const initialState = fromJS({
 
 function addLink(state, link) {
   const links = state.get('links');
-  links.push(link);
+  if (links.find((l) => {
+    return l._id === link._id;
+  }).lenth === 0) {
+    links.push(link);
+  }
   return state.set('links', links);
 }
 

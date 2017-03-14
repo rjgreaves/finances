@@ -9,11 +9,20 @@ import {
   REQUEST_TOPICS_SUCEEDED,
   SELECT_TOPIC,
   TOGGLE_DRAWER,
+  LOGOUT,
+  LOGOUT_SUCCESSFUL,
 } from './constants';
+import {
+  LOGIN_SUCCESSFUL,
+} from '../LoginContainer/constants'
 
 const initialState = fromJS({
   topics: [],
   isDrawerOpen: false,
+  user: JSON.parse(localStorage.getItem("user")) || {
+    isAuthenticated: false,
+    email: "",
+  }
 });
 
 function navigationContainerReducer(state = initialState, action) {
@@ -26,6 +35,16 @@ function navigationContainerReducer(state = initialState, action) {
       return state.set('selectedTopic', action.topic).set('isDrawerOpen', false);
     case TOGGLE_DRAWER:
       return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
+    case LOGIN_SUCCESSFUL:
+      let user = {
+        email: action.email,
+        isAuthenticated: true
+      };
+      state.set("user", JSON.stringify(user));
+      return state.set('user', user);
+    case LOGOUT_SUCCESSFUL:
+      state.set("user", "");
+      return;
     default:
       return state;
   }

@@ -9,12 +9,13 @@ import styles from './styles.css';
 import AppBar from '../AppBar';
 import Drawer from '../Drawer';
 
-function Navigation({ topics, selectTopic, toggleDrawer, isDrawerOpen, email }) {
+function Navigation({ topics, selectTopic, toggleDrawer, isDrawerOpen, user, logout }) {
   return (
     <div className={styles.navigation}>
       <AppBar 
         toggleDrawer={toggleDrawer}
-        email={email}
+        user={user}
+        logout={logout}
       />
       <Drawer 
         items={topics}
@@ -37,7 +38,8 @@ Navigation.propTypes = {
   selectTopic: React.PropTypes.func.isRequired,
   toggleDrawer: React.PropTypes.func.isRequired,
   isDrawerOpen: React.PropTypes.bool.isRequired,
-  email: React.PropTypes.string,
+  user: React.PropTypes.object,
+  logout: React.PropTypes.func.isRequired,
 }
 
 export default Navigation;

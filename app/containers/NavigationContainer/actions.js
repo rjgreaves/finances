@@ -10,6 +10,8 @@ import {
   REQUEST_TOPICS_FAILED,
   SELECT_TOPIC,
   TOGGLE_DRAWER,
+  LOGOUT,
+  LOGOUT_SUCCESSFUL,
 } from './constants';
 
 export function requestTopics(){
@@ -42,5 +44,17 @@ export function selectTopic(topic){
 export function toggleDrawer() {
   return {
     type: TOGGLE_DRAWER,
+  }
+}
+
+export function logout() {
+  return {
+    type: LOGOUT
+  }
+}
+
+export function logoutSuccessful() {
+  return {
+    type: LOGOUT_SUCCESSFUL,
   }
 }

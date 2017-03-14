@@ -1,8 +1,8 @@
 // import { take, call, put, select } from 'redux-saga/effects';
-import { REQUEST_TOPICS, SELECT_TOPIC, REQUEST_TOPICS_SUCEEDED } from './constants';
+import { REQUEST_TOPICS, SELECT_TOPIC, REQUEST_TOPICS_SUCEEDED, LOGOUT } from './constants';
 import { takeLatest } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
-import { requestTopicsSucceeded, requestTopicsFailed } from './actions';
+import { requestTopicsSucceeded, requestTopicsFailed, logoutSuccessful } from './actions';
 import { push } from 'react-router-redux';
 import selectNavigationContainer from './selectors';
 
@@ -25,9 +25,6 @@ function* pushTopic(action) {
   yield put(push(`/topics/${action.topic._id}`));
 }
 
-
-// TODO: NOT WORKING
-// LESSON: Adding Routes to your component: Redirecting to a route...
 export function* selectDefaultTopicSaga() {
   yield* takeLatest(REQUEST_TOPICS_SUCEEDED, selectDefaultTopic);
 }
@@ -48,9 +45,19 @@ export function* fetchTopicsSaga() {
   yield* takeLatest(REQUEST_TOPICS, fetchTopics);
 }
 
+function* performLogout() {
+    //TODO: Call serverside logout??
+    yield put(logoutSuccessful());
+}
+
+export function* doLogoutSaga() {
+  yield* takeLatest(LOGOUT, performLogout)
+}
+
 // All sagas to be loaded
 export default [
   fetchTopicsSaga,
   selectTopicSaga,
+  doLogoutSaga,
   selectDefaultTopicSaga,
 ];

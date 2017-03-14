@@ -8,6 +8,7 @@ import {
   LOGIN,
   CANCEL_LOGIN,
   LOGIN_FAILED,
+  LOGIN_SUCCESSFUL,
 } from './constants';
 
 export function login(email, password) {
@@ -30,3 +31,11 @@ export function loginFailed(errorText) {
     errorText
   }
 }
+
+export function loginSuccessful(email) {
+  return {
+    type: LOGIN_SUCCESSFUL,
+    email,
+  }
+}
+

@@ -1,11 +1,11 @@
 // import { take, call, put, select } from 'redux-saga/effects';
-import { LOGIN, CANCEL_LOGIN, LOGIN_FAILED } from './constants';
+import { LOGIN, CANCEL_LOGIN, LOGIN_FAILED, LOGOUT, LOGOUT_SUCCESSFUL } from './constants';
 import { call, put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { goBack } from 'react-router-redux';
 import { login } from '../../api';
-import { loginFailed } from './actions';
-
+import { loginFailed, loginSuccessful, logoutSuccessful } from './actions';
+import localStorageManager  from "../../localStorageManager";
 
 // Individual exports for testing
 
@@ -16,7 +16,8 @@ function* performLogin(action){
       throw new Error(response.errorMessage);
     }
     else{
-      localStorage.setItem('id_token', response.token);
+      localStorageManager.setIdToken(response.token);
+      yield put(loginSuccessful(action.email));
       yield put(goBack());
     }
   } catch (e) {
