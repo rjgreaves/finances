@@ -1,7 +1,22 @@
 var ApiConfig = require("./config");
 
+export function fetchTopicsFromServer() {
+    var config = ApiConfig.getHeader(true);
+    return ApiConfig.fetchGet(
+        "topics"
+    ).then(response => response.json());
+}
+
+export function fetchLinksFromServer(topicId) {
+    var config = ApiConfig.getHeader(true);
+    return ApiConfig.fetchGet(
+        `topics/${topicId}/links`
+    )
+        .then(response => response.json());
+}
+
 export function createLink({ topicId, url, description }) {
-    var config = ApiConfig.getHeaders(true);
+    var config = ApiConfig.getHeader(true);
     return ApiConfig.fetchPost(
         `topics/${topicId}/links`,
         JSON.stringify({

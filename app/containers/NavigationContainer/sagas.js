@@ -5,12 +5,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { requestTopicsSucceeded, requestTopicsFailed, logoutSuccessful } from './actions';
 import { push } from 'react-router-redux';
 import selectNavigationContainer from './selectors';
-
-export function fetchTopicsFromServer() {
-  return fetch("http://localhost:3000/api/topics")
-    .then(response => response.json());
-}
-
+import { fetchTopicsFromServer } from "../../api/index";
 function* fetchTopics() {
   try{
     const topics = yield call(fetchTopicsFromServer);

@@ -1,10 +1,29 @@
 var UserItem = require("../../Models/UserItem").UserItem;
 var bcrypt = require("bcrypt");
 var tokenService = require("../../tokenService");
+var ClaimTypes = require("../../../security/claimTypes");
 
 module.exports = {
 
   registerRoutes(app) {
+
+    app.post('/api/token', (req, res) => {
+      var token = req.body.token;
+      try{
+        tokenService.isAuthenticated(token, (decoded) => {
+          if(decoded){
+            ClaimsHelper.hasClaim(ClaimTypes.UserIdClaimType);
+            return res.status(200);
+          }
+          else {
+            return res.status(401);
+          }
+        });
+      }
+      catch (e) {
+        return res.status(500);
+      }
+    });
 
     app.post('/api/login', (req, res) => {
 
@@ -20,9 +39,7 @@ module.exports = {
           bcrypt.compare(req.body.password, user.passwordHash, function (err, doesMatch) {
             if (doesMatch) {
               var claims = {
-                sub: 'user9876',
-                iss: 'https://mytrustyapp.com',
-                permissions: 'upload-photos'
+                  [ClaimTypes.UserIdClaimType]: user._id,
               };
               var token = tokenService.createToken(claims);
               return res.send({ token: token });

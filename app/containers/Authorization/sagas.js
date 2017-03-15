@@ -2,7 +2,6 @@
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from "./constants";
 import { call, put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
-import { loginUser } from '../../api/auth';
 import { loginFailed } from './actions';
 
 // Individual exports for testing

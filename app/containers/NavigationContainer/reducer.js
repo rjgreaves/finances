@@ -14,15 +14,13 @@ import {
 } from './constants';
 import {
   LOGIN_SUCCESSFUL,
-} from '../LoginContainer/constants'
+} from '../LoginContainer/constants';
+import { User } from "../../models/user";
 
 const initialState = fromJS({
   topics: [],
   isDrawerOpen: false,
-  user: JSON.parse(localStorage.getItem("user")) || {
-    isAuthenticated: false,
-    email: "",
-  }
+  user: new User()
 });
 
 function navigationContainerReducer(state = initialState, action) {
@@ -36,15 +34,16 @@ function navigationContainerReducer(state = initialState, action) {
     case TOGGLE_DRAWER:
       return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
     case LOGIN_SUCCESSFUL:
-      let user = {
-        email: action.email,
-        isAuthenticated: true
-      };
-      state.set("user", JSON.stringify(user));
+      let user = state.get("user");
+      if (user) {
+        user.loggedIn(action.email);
+      }
+      else {
+        user = new User();
+      }
       return state.set('user', user);
     case LOGOUT_SUCCESSFUL:
-      state.set("user", "");
-      return;
+      return state.set("user", new User());
     default:
       return state;
   }

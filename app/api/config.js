@@ -15,7 +15,7 @@ export function getHeader(isAuthenticated = false, contentType = "application/js
 export function getConfig(method, body, headers = null) {
     let config = {
         method: method,
-        headers: headers || getHeader(isAuthenticated),
+        headers: headers || getHeader(),
         body: body
     }
     return config;

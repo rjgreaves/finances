@@ -4,11 +4,7 @@ import { takeLatest } from 'redux-saga';
 import { requestLinksSucceeded, requestLinksFailed} from './actions';
 import { REQUEST_LINKS, START_ADD } from './constants';
 import { push } from 'react-router-redux';
-
-function fetchLinksFromServer(topicId) { 
-  return fetch(`http://localhost:3000/api/topics/${topicId}/links`)
-    .then(response => response.json());
-}
+import { fetchLinksFromServer } from "../../api/index";
 
 function* fetchLinks(action) {
   try{
@@ -16,6 +12,7 @@ function* fetchLinks(action) {
     yield put(requestLinksSucceeded(links));
   }
   catch (e) {
+    console.log(e);
     yield put(requestLinksFailed(e.message));
   }
 }

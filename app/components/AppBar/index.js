@@ -10,8 +10,8 @@ import IconButton from '../IconButton';
 import styles from './styles.css';
 
 function AppBar({ toggleDrawer, logout, user }) {
-  const loginLink = user.isAuthenticated ? user.email : (<Link to="/login"> login </Link>);
-  const logoutLink = user.isAuthenticated ? (<a href="#" onClick={logout}>logout</a>) : "";
+  const loginLink = user && user.isAuthenticated ? user.email : (<Link to="/login"> login </Link>);
+  const logoutLink = user && user.isAuthenticated ? (<a href="#" onClick={logout}>logout</a>) : "";
   return (
     <div className={styles.appBar}>
       <IconButton

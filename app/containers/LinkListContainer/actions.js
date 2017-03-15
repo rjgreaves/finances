@@ -28,7 +28,7 @@ export function requestLinksSucceeded(links) {
 export function requestLinksFailed(message) {
   return {
     type: REQUEST_LINKS_FAILED,
-    message: message``
+    message: message
   };
 }
 
