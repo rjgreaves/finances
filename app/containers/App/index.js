@@ -12,14 +12,33 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import selectApp from './selectors';
+
+import localStorageManager  from "localStorageManager";
+import { authenticateToken as authenticateTokenAction, startLogin} from "./actions";
 
 import styles from './styles.css';
 
-export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class AppContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     children: React.PropTypes.node,
+    authenticateToken: React.PropTypes.func.isRequired,
+    startLogin: React.PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    // Check for token and update application state if required
+    const token = localStorageManager.getIdToken();
+    if (token) {
+        console.log("Dispatching auth token request...")
+        this.props.authenticateToken(token);
+    }
+    else {
+      this.props.startLogin();
+    }
+  }
 
   render() {
     return (
@@ -29,3 +48,15 @@ export default class App extends React.Component { // eslint-disable-line react/
     );
   }
 }
+
+const mapStateToProps = selectApp();
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    authenticateToken: (token) => dispatch(authenticateTokenAction(token)),
+    startLogin: () => dispatch(startLogin()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

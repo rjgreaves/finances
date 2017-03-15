@@ -38,4 +38,3 @@ export function loginSuccessful(email) {
     email,
   }
 }
-

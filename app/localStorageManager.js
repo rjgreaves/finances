@@ -3,12 +3,16 @@ const idTokenKey = "id_token";
 const localStorageManager = {
 
     setIdToken: (idToken) => {
-        localStorage.setItem(idTokenKey, idToken);
+        sessionStorage.setItem(idTokenKey, idToken);
     },
 
     getIdToken: () => {
-        return localStorage.getItem(idTokenKey);
-    }
+        return sessionStorage.getItem(idTokenKey);
+    },
+
+    removeToken: () => {
+      sessionStorage.removeItem(idTokenKey);
+    },
 
 }
 

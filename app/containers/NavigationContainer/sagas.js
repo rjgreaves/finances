@@ -6,6 +6,7 @@ import { requestTopicsSucceeded, requestTopicsFailed, logoutSuccessful } from '.
 import { push } from 'react-router-redux';
 import selectNavigationContainer from './selectors';
 import { fetchTopicsFromServer } from "../../api/index";
+
 function* fetchTopics() {
   try{
     const topics = yield call(fetchTopicsFromServer);

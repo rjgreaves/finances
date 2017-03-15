@@ -1,5 +1,5 @@
 // import { take, call, put, select } from 'redux-saga/effects';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from "./constants";
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, NOT_AUTHORISED } from "./constants";
 import { call, put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { loginFailed } from './actions';
@@ -21,6 +21,14 @@ function* performLogin(action){
   } catch (e) {
     yield put(loginFailed(e.message));
   }
+}
+
+function* performNotAuthorised(){
+  alert('not auth');
+}
+
+export function* doNotAuthorised() {
+  yield* takelatest(NOT_AUTHORISED, performNotAuthorised)
 }
 
 export function* doLoginSaga() {

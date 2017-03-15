@@ -15,6 +15,9 @@ import {
 import {
   LOGIN_SUCCESSFUL,
 } from '../LoginContainer/constants';
+import {
+  AUTHENTICATE_TOKEN,
+} from '../App/constants';
 import { User } from "../../models/user";
 
 const initialState = fromJS({

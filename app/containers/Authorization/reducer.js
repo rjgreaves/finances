@@ -6,9 +6,9 @@
 
 import { fromJS } from 'immutable';
 import {
-  LOGIN_REQUEST, 
-  LOGIN_SUCCESS, 
-  LOGIN_FAILURE, 
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
   LOGOUT_SUCCESS,
 } from './constants';
 

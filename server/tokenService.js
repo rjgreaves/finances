@@ -13,7 +13,7 @@ const tokenService = {
         if (token) {
             jwt.verify(token, secret, (err, decoded) => {
                 if (err) {
-                    return res.json({ success: false, message: 'Failed to authenticate token.' });
+                    return res.status(401).send({ success: false, message: 'Failed to authenticate token.' });
                 } else {
                     cb(decoded)
                 }

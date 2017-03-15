@@ -3,16 +3,20 @@ var ApiConfig = require("./config");
 export function fetchTopicsFromServer() {
     var config = ApiConfig.getHeader(true);
     return ApiConfig.fetchGet(
-        "topics"
-    ).then(response => response.json());
+        "topics",
+        {},
+        config
+    );
 }
 
 export function fetchLinksFromServer(topicId) {
     var config = ApiConfig.getHeader(true);
+    console.log(config);
     return ApiConfig.fetchGet(
-        `topics/${topicId}/links`
-    )
-        .then(response => response.json());
+        `topics/${topicId}/links`,
+        {},
+        config
+    );
 }
 
 export function createLink({ topicId, url, description }) {
@@ -25,23 +29,14 @@ export function createLink({ topicId, url, description }) {
             topicId,
         }),
         config
-    ).then(response => response.json());
-    // return fetch(`http://localhost:3000/api/topics/${topicId}/links`, {
-    //     method: 'POST',
-    //     headers: {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //         url,
-    //         description,
-    //         topicId,
-    //     }),
-    // }).then(response => response.json());
+    );
 }
 
 export function login(email, password) {
     var headers = ApiConfig.getHeader(false, "application/x-www-form-urlencoded");
-    return ApiConfig.fetchPost('login', `email=${email}&password=${password}`, headers)
-        .then(response => response.json());
+    return ApiConfig.fetchPost('login', `email=${email}&password=${password}`, headers);
+}
+
+export function authenticateTokenWithServer(token) {
+    return ApiConfig.fetchPost('token', `token=${token}`);
 }

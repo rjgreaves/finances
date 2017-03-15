@@ -24,7 +24,7 @@ export function* addLinkCancelledSaga() {
 }
 
 export function* addLinkSaga() {
-  yield* takeLatest(ADD_LINK, addLink)
+    yield* takeLatest(ADD_LINK, addLink)
 }
 
 // All sagas to be loaded

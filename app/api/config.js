@@ -1,4 +1,5 @@
 var baseUrl = 'http://localhost:3000/api/';
+import { NOT_AUTHORISED } from "../containers/Authorization/constants";
 
 export function getHeader(isAuthenticated = false, contentType = "application/json"){
     let headers = {
@@ -27,10 +28,16 @@ export function getUrl(url){
 
 export function fetchGet(url, body, headers = null){
     var config = getConfig("GET", body, headers);
-    return fetch(getUrl(url), config);
+    return fetch(getUrl(url), config)
+      .then((response) => {
+        if(response.status === 401) {
+          dispatch(NOT_AUTHORISED);
+        }
+        return response.json();
+      });
 }
 
 export function fetchPost(url, body, headers = null){
     var config = getConfig("POST", body, headers);
-    return fetch(getUrl(url), config);
+    return fetch(getUrl(url), config).then(response => response.json());
 }

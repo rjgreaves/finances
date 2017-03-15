@@ -18,7 +18,7 @@ export class NavigationContainer extends React.Component { // eslint-disable-lin
   componentWillMount() {
     this.props.requestTopics();
   }
-  
+
   render() {
     return (
       <Navigation { ...this.props } />

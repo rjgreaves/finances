@@ -11,3 +11,4 @@ export const LOGIN_SUCCESS = 'app/Authorization/LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'app/Authorization/LOGIN_FAILURE'
 export const LOGOUT_REQUEST = "app/Authorization/LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "app/Authorization/LOGOUT_SUCCESS";
+export const NOT_AUTHORISED = "app/Authorization/NOT_AUTHORISED";

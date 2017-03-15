@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 // selectLocationState expects a plain JS object for the routing state
 const selectLocationState = () => {
   let prevRoutingState;
@@ -15,6 +17,27 @@ const selectLocationState = () => {
   };
 };
 
+/**
+ * Direct selector to the authorization state domain
+ */
+const selectAppDomain = () => state => state.get('AppContainer');
+
+/**
+ * Other specific selectors
+ */
+
+
+/**
+ * Default selector used by Authorization
+ */
+
+const selectApp = () => createSelector(
+  selectAppDomain(),
+  (substate) => substate ? substate.toJS() : {}
+);
+
+export default selectApp;
 export {
   selectLocationState,
+  selectAppDomain,
 };

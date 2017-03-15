@@ -25,6 +25,8 @@ export default function createRoutes(store) {
           System.import('containers/HomePage'),
           System.import('containers/NavigationContainer/reducer'),
           System.import('containers/NavigationContainer/sagas'),
+          System.import('containers/App/reducer'),
+          System.import('containers/App/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -33,10 +35,14 @@ export default function createRoutes(store) {
           component,
           navigationReducer,
           navigationSagas,
+          appReducer,
+          appSagas,
 
         ]) => {
           injectReducer('navigationContainer', navigationReducer.default)
           injectSagas('navigationContainer', navigationSagas.default)
+          injectReducer('appContainer', appReducer.default)
+          injectSagas('appContainer', appSagas.default)
           renderRoute(component);
         });
 
