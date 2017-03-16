@@ -39,10 +39,10 @@ export default function createRoutes(store) {
           appSagas,
 
         ]) => {
-          injectReducer('navigationContainer', navigationReducer.default)
-          injectSagas('navigationContainer', navigationSagas.default)
-          injectReducer('appContainer', appReducer.default)
-          injectSagas('appContainer', appSagas.default)
+          injectReducer('navigationContainer', navigationReducer.default);
+          injectSagas('navigationContainer', navigationSagas.default);
+          injectReducer('appContainer', appReducer.default);
+          injectSagas('appContainer', appSagas.default);
           renderRoute(component);
         });
 
@@ -90,8 +90,8 @@ export default function createRoutes(store) {
 
                 importModules.catch(errorLoading);
               },
-            }
-          ]
+            },
+          ],
         },
         {
           path: '/login',
@@ -114,7 +114,7 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         },
-      ]
+      ],
     }, {
       path: '*',
       name: 'notfound',
