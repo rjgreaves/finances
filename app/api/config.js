@@ -1,5 +1,6 @@
 var baseUrl = 'http://localhost:3000/api/';
 import { NOT_AUTHORISED } from "../containers/Authorization/constants";
+import localStorageManager from '../localStorageManager';
 
 export function getHeader(isAuthenticated = false, contentType = "application/json"){
     let headers = {
@@ -8,7 +9,7 @@ export function getHeader(isAuthenticated = false, contentType = "application/js
         //'Content-Type': 'application/x-www-form-urlencoded'
     };
     if (isAuthenticated) {
-        headers['x-access-token'] = `${localStorage.getItem('id_token')}`
+        headers['x-access-token'] = `${localStorageManager.getIdToken()}`
     }
     return headers;
 }

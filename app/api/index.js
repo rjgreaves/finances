@@ -40,3 +40,8 @@ export function login(email, password) {
 export function authenticateTokenWithServer(token) {
     return ApiConfig.fetchPost('token', `token=${token}`);
 }
+
+export function register(email, password) {
+    var headers = ApiConfig.getHeader(false, "application/x-www-form-urlencoded");
+    return ApiConfig.fetchPost('register', `email=${email}&password=${password}`, headers);
+}
