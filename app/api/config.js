@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3000/api/';
 import { NOT_AUTHORISED } from '../containers/Authorization/constants';
 import localStorageManager from '../localStorageManager';
-import { dispatch } from 'redux';
+import dispatch from 'redux/es/createStore';
 
 export function getHeader(isAuthenticated = false, contentType = 'application/json') {
   const headers = {

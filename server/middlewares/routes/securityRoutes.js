@@ -22,9 +22,9 @@ module.exports = {
       }
     });
 
-    app.post('/api/login', (req, res) => {
+    app.post('/api/login', (req, res) =>
       UserItem.findOne({ email: req.body.email },
-        (err, user) => {
+        (err, user) => { // eslint-disable-line consistent-return
           if (err) {
             return res.status(500);
           }
@@ -42,10 +42,9 @@ module.exports = {
             }
             return res.status(401).send({ errorMessage: 'Credentials are not valid' });
           });
-          return res.status(500);
         }
-      );
-    });
+      )
+    );
   },
 
 

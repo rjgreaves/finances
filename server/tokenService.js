@@ -7,23 +7,24 @@ const tokenService = {
   createToken(claims) {
     return jwt.sign(claims, secret);
   },
-  isAuthenticated(req, res, cb) {
+  isAuthenticated(req, res, cb) { // eslint-disable-line consistent-return
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
-      jwt.verify(token, secret, (err, decoded) => {
+      jwt.verify(token, secret, (err, decoded) => { // eslint-disable-line consistent-return
         if (err) {
           return res.status(401).send({
             success: false,
             message: 'Failed to authenticate token.',
           });
         }
-        return cb(decoded);
+        cb(decoded);
+      });
+    } else {
+      return res.status(401).send({
+        success: false,
+        message: 'Failed to provide token.',
       });
     }
-    return res.status(401).send({
-      success: false,
-      message: 'No token provided.',
-    });
   },
 };
 

@@ -9,6 +9,9 @@ const LinkItemSchema = new Schema({
   voters: Array,
 });
 
+/* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
+LinkItemSchema.virtual('id').get(() => this._id);
+
 const LinkItem = mongoose.model('LinkItem', LinkItemSchema);
 
 module.exports = LinkItemSchema;

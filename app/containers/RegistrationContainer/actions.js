@@ -5,14 +5,14 @@
  */
 
 import {
-  REGSITER,
+  REGISTER,
   // REGISTER_FAILED,
   // REGISTER_SUCCESSFUL,
 } from './constants';
 
 export function register(email, password) {
   return {
-    type: REGSITER,
+    type: REGISTER,
     email,
     password,
   };

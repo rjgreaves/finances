@@ -33,7 +33,7 @@ module.exports = {
       tokenService.isAuthenticated(req, res, () => {
         TopicItem.findOne(
           { _id: req.params.id },
-          (err, doc) => {
+          (err, doc) => { // eslint-disable-line consistent-return
             if (err) return res.sendStatus(500);
 
             let link = doc.links.find((docLink) => docLink.url === req.body.url);
@@ -56,8 +56,6 @@ module.exports = {
 
               return res.send(link);
             });
-
-            return res.status(500);
           });
       });
     });
