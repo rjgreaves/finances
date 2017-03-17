@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 class TextInput extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-  value () {
+  value() {
     return this.field.value;
   }
 
@@ -20,21 +20,21 @@ class TextInput extends React.Component { // eslint-disable-line react/prefer-st
     const fieldError = errorText ? (
       <div
         className={styles.errorMessage}
-        >
+      >
         {errorText}
       </div>
-    ) : null
+    ) : null;
     return (
       <div>
         <input
           className={classNames(styles.input,
             this.props.className,
-            { [styles.inputError]: this.errorText}
+            { [styles.inputError]: this.errorText }
           )}
           placeholder={this.props.placeholder}
-          ref={(f) => { this.field = f; } }
+          ref={(f) => { this.field = f; }}
           type={this.props.type}
-          />
+        />
 
           {fieldError}
 
@@ -48,5 +48,5 @@ TextInput.propTypes = {
   placeholder: React.PropTypes.string,
   className: React.PropTypes.string,
   type: React.PropTypes.string,
-}
+};
 export default TextInput;

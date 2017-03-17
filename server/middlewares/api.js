@@ -1,17 +1,13 @@
 const bodyParser = require('body-parser');
-var uuid = require("uuid");
-var database = require("../database");
-var tokenService = require("../tokenService");
 
-var TopicRoutes = require('./routes/topicRoutes');
-var LinkRoutes = require('./routes/linkRoutes');
-var SecurityRoutes = require('./routes/securityRoutes');
+const TopicRoutes = require('./routes/topicRoutes');
+const LinkRoutes = require('./routes/linkRoutes');
+const SecurityRoutes = require('./routes/securityRoutes');
 
 // USAGE
 //  app.use('/api/path-you-want-to-protect', jwtCheck);
 
 module.exports = (app) => {
-
   app.use((req, res, next) => {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,5 +26,4 @@ module.exports = (app) => {
   TopicRoutes.registerRoutes(app);
   LinkRoutes.registerRoutes(app);
   SecurityRoutes.registerRoutes(app);
-
 };

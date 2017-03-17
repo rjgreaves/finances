@@ -5,20 +5,19 @@ import { call, put, select } from 'redux-saga/effects';
 import { requestTopicsSucceeded, requestTopicsFailed, logoutSuccessful } from './actions';
 import { push } from 'react-router-redux';
 import selectNavigationContainer from './selectors';
-import { fetchTopicsFromServer } from "../../api/index";
+import { fetchTopicsFromServer } from '../../api/index';
 
 function* fetchTopics() {
-  try{
+  try {
     const topics = yield call(fetchTopicsFromServer);
     yield put(requestTopicsSucceeded(topics));
-  }
-  catch(e) {
+  } catch (e) {
     yield put(requestTopicsFailed(e.messages));
   }
 }
 
 function* pushTopic(action) {
-  yield put(push(`/topics/${action.topic._id}`));
+  yield put(push(`/topics/${action.topic.id}`));
 }
 
 export function* selectDefaultTopicSaga() {
@@ -27,8 +26,8 @@ export function* selectDefaultTopicSaga() {
 
 function* selectDefaultTopic() {
   const state = yield select(selectNavigationContainer());
-  if(!state.selectedTopic && state.routerLocation === '/') {
-    yield put(push(`/topics/${state.topics[0]._id}`));
+  if (!state.selectedTopic && state.routerLocation === '/') {
+    yield put(push(`/topics/${state.topics[0].id}`));
   }
 }
 
@@ -42,12 +41,12 @@ export function* fetchTopicsSaga() {
 }
 
 function* performLogout() {
-    //TODO: Call serverside logout??
-    yield put(logoutSuccessful());
+    // TODO: Call serverside logout??
+  yield put(logoutSuccessful());
 }
 
 export function* doLogoutSaga() {
-  yield* takeLatest(LOGOUT, performLogout)
+  yield* takeLatest(LOGOUT, performLogout);
 }
 
 // All sagas to be loaded

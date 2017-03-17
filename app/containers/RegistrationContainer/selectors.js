@@ -16,7 +16,7 @@ const selectRegistrationContainerDomain = () => state => state.get('registration
 
 const selectRegistrationContainer = () => createSelector(
   selectRegistrationContainerDomain(),
-  (substate) => substate ? substate.toJS() : {}
+  (substate) => (substate ? substate.toJS() : {})
 );
 
 export default selectRegistrationContainer;

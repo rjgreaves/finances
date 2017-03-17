@@ -8,8 +8,8 @@ import { goBack } from 'react-router-redux';
 
 // Individual exports for testing
 
-function* addLink(action){
-  try{
+function* addLink(action) {
+  try {
     const serverLink = yield call(createLink, action.link);
     console.log(`serverLink:${serverLink}`);
     yield put(addLinkSuccess(serverLink));
@@ -24,7 +24,7 @@ export function* addLinkCancelledSaga() {
 }
 
 export function* addLinkSaga() {
-    yield* takeLatest(ADD_LINK, addLink)
+  yield* takeLatest(ADD_LINK, addLink);
 }
 
 // All sagas to be loaded

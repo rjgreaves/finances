@@ -9,21 +9,18 @@ import {
   REQUEST_TOPICS_SUCEEDED,
   SELECT_TOPIC,
   TOGGLE_DRAWER,
-  LOGOUT,
+  // LOGOUT,
   LOGOUT_SUCCESSFUL,
 } from './constants';
 import {
   LOGIN_SUCCESSFUL,
 } from '../LoginContainer/constants';
-import {
-  AUTHENTICATE_TOKEN,
-} from '../App/constants';
-import { User } from "../../models/user";
+import { User } from '../../models/user';
 
 const initialState = fromJS({
   topics: [],
   isDrawerOpen: false,
-  user: new User()
+  user: new User(),
 });
 
 function navigationContainerReducer(state = initialState, action) {
@@ -36,17 +33,17 @@ function navigationContainerReducer(state = initialState, action) {
       return state.set('selectedTopic', action.topic).set('isDrawerOpen', false);
     case TOGGLE_DRAWER:
       return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
-    case LOGIN_SUCCESSFUL:
-      let user = state.get("user");
+    case LOGIN_SUCCESSFUL: {
+      let user = state.get('user');
       if (user) {
         user.loggedIn(action.email);
-      }
-      else {
+      } else {
         user = new User();
       }
       return state.set('user', user);
+    }
     case LOGOUT_SUCCESSFUL:
-      return state.set("user", new User());
+      return state.set('user', new User());
     default:
       return state;
   }

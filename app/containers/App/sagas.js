@@ -3,10 +3,8 @@ import { START_LOGIN, AUTHENTICATE_TOKEN } from './constants';
 import { call, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { takeLatest } from 'redux-saga';
-import { goBack } from 'react-router-redux';
-import { login, authenticateTokenWithServer } from '../../api';
 import { authenticateToken } from './actions';
-import localStorageManager  from "../../localStorageManager";
+import localStorageManager from '../../localStorageManager';
 
 // Individual exports for testing
 
@@ -14,24 +12,23 @@ export function* doAuthenticateTokenSaga() {
   yield* takeLatest(AUTHENTICATE_TOKEN, performAuthenticateToken);
 }
 
-function* performAuthenticateToken(action){
-  console.log("Checking token...");
-  try{
+function* performAuthenticateToken(action) {
+  console.log('Checking token...');
+  try {
     const response = yield call(authenticateToken, action.token);
-    if(response.status === 401){
+    if (response.status === 401) {
       localStorageManager.setIdToken(null);
-      yield put(push(`/login`));
-    }
-    else{
+      yield put(push('/login'));
+    } else {
       localStorageManager.setIdToken(response.token);
     }
   } catch (e) {
-    yield put(push("/login"));
+    yield put(push('/login'));
   }
 }
 
-function* startLogin(action) {
-  yield put(push("/login"));
+function* startLogin() {
+  yield put(push('/login'));
 }
 
 export function* startLoginSaga() {

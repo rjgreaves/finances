@@ -15,49 +15,45 @@ class RegistrationForm extends React.Component { // eslint-disable-line react/pr
   static propTypes = {
     register: React.PropTypes.func.isRequired,
     cancelRegister: React.PropTypes.func.isRequired,
-    registrationError: React.PropTypes.string
+    registrationError: React.PropTypes.string,
   }
 
   state = {};
 
   register = () => {
-
     let validationFailed = false;
     const email = this.emailField.value();
     const password = this.passwordField.value();
     const passwordConfirmation = this.passwordConfirmationField.value();
 
-    if(!validator.validate(email)){
+    if (!validator.validate(email)) {
       this.setState({
         errorText: 'Please provide a valid email',
       });
       validationFailed = true;
-    }
-    else{
+    } else {
       this.setState({
         errorText: null,
       });
     }
 
-    if(!password) {
+    if (!password) {
       this.setState({
         passwordErrorText: 'Please provide a password',
       });
       validationFailed = true;
-    }
-    else{
+    } else {
       this.setState({
         passwordErrorText: null,
       });
     }
 
-    if(!passwordConfirmation) {
+    if (!passwordConfirmation) {
       this.setState({
         passwordConfirmationErrorText: 'Please provide a password confirmation',
       });
       validationFailed = true;
-    }
-    else{
+    } else {
       this.setState({
         passwordConfirmationErrorText: null,
       });
@@ -66,13 +62,11 @@ class RegistrationForm extends React.Component { // eslint-disable-line react/pr
     if (!validationFailed) {
       this.props.register(email, password);
     }
-
   }
   render() {
-
     let serverError = null;
-    if(this.props.registrationError){
-      serverError = <div className={styles.errorMessage}>{this.props.registrationError}</div>
+    if (this.props.registrationError) {
+      serverError = <div className={styles.errorMessage}>{this.props.registrationError}</div>;
     }
 
     return (
@@ -87,29 +81,30 @@ class RegistrationForm extends React.Component { // eslint-disable-line react/pr
           ref={(f) => { this.emailField = f; }}
           errorText={this.state.errorText}
           type="text"
-          />
+        />
 
-          <TextInput
-            placeholder="Password"
-            ref={(f) => { this.passwordField = f; }}
-            errorText={this.state.passwordErrorText}
-            type="password"
-            />
+        <TextInput
+          placeholder="Password"
+          ref={(f) => { this.passwordField = f; }}
+          errorText={this.state.passwordErrorText}
+          type="password"
+        />
 
-            <TextInput
-              placeholder="Password Confirmation"
-              ref={(f) => { this.passwordConfirmationField = f; }}
-              errorText={this.state.passwordConfirmationErrorText}
-              type="password"
-              />
+        <TextInput
+          placeholder="Password Confirmation"
+          ref={(f) => { this.passwordConfirmationField = f; }}
+          errorText={this.state.passwordConfirmationErrorText}
+          type="password"
+        />
+
         {serverError}
 
         <div
           className={styles.actionContainer}
-          >
+        >
           <div
             className={styles.button}
-            onClick={this.props.cancelLogin}
+            onClick={this.props.cancelRegister}
           >
             cancel
           </div>

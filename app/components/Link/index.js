@@ -21,12 +21,12 @@ function Link({ link }) {
           {link.voteCount}
         </div>
       </div>
-      <div 
+      <div
         className={styles.detailsContainer}
       >
         <div>
-          <a 
-            href={link.url} 
+          <a
+            href={link.url}
             className={styles.linkAnchor}
           >
             {link.url}
@@ -48,7 +48,7 @@ Link.propTypes = {
     description: React.PropTypes.string.isRequired,
     url: React.PropTypes.string.isRequired,
     _id: React.PropTypes.string.isRequired,
-  })
-}
+  }),
+};
 
 export default Link;

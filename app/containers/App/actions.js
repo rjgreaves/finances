@@ -7,11 +7,11 @@ export function authenticateToken(token) {
   return {
     type: AUTHENTICATE_TOKEN,
     token,
-  }
+  };
 }
 
 export function startLogin() {
   return {
     type: START_LOGIN,
-  }
+  };
 }

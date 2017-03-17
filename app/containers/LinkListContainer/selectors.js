@@ -17,10 +17,10 @@ const selectTopic = () => createSelector(
   selectNavigationContainer(),
   selectRouteTopic(),
   (navigationState, routeTopicId) => {
-    const selectedTopic = navigationState.topics.find(t => t._id === routeTopicId);
+    const selectedTopic = navigationState.topics.find(t => t.id === routeTopicId);
     return selectedTopic || {
       name: '',
-      _id: ''
+      _id: '',
     };
   }
 );
@@ -32,8 +32,8 @@ const selectTopic = () => createSelector(
 const selectLinkListContainer = () => createSelector(
   selectLinkListContainerDomain(),
   selectTopic(),
-  (substate, topic) => 
-    Object.assign(substate.toJS(), { topicId: topic._id, topicName: topic.name })
+  (substate, topic) =>
+    Object.assign(substate.toJS(), { topicId: topic.id, topicName: topic.name })
 );
 
 export default selectLinkListContainer;

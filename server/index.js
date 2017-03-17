@@ -12,7 +12,7 @@ const resolve = require('path').resolve;
 
 const app = express();
 
-require("./database");
+require('./database');
 
 setupApi(app);
 

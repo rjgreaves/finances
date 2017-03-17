@@ -15,26 +15,26 @@ export function login(email, password) {
   return {
     type: LOGIN,
     email,
-    password
+    password,
   };
 }
 
 export function cancelLogin() {
   return {
-    type: CANCEL_LOGIN
+    type: CANCEL_LOGIN,
   };
 }
 
 export function loginFailed(errorText) {
   return {
     type: LOGIN_FAILED,
-    errorText
-  }
+    errorText,
+  };
 }
 
 export function loginSuccessful(email) {
   return {
     type: LOGIN_SUCCESSFUL,
     email,
-  }
+  };
 }

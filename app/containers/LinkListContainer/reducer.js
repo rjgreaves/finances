@@ -6,7 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
-  REQUEST_LINKS_SUCCEEDED
+  REQUEST_LINKS_SUCCEEDED,
 } from './constants';
 
 import {
@@ -19,9 +19,7 @@ const initialState = fromJS({
 
 function addLink(state, link) {
   const links = state.get('links');
-  if (links.find((l) => {
-    return l._id === link._id;
-  }).lenth === 0) {
+  if (links.find((l) => l.id === link.id).length === 0) {
     links.push(link);
   }
   return state.set('links', links);

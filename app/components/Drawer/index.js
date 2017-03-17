@@ -20,9 +20,7 @@ function Drawer({ items, selectItem, itemLabelAttr, itemKeyAttr, isDrawerOpen })
     </div>
   ));
   return (
-    <div className={classNames(styles.drawer, { [styles.drawerOpen]: isDrawerOpen})}
-    
-    >
+    <div className={classNames(styles.drawer, { [styles.drawerOpen]: isDrawerOpen })}>
       {itemNodes}
     </div>
   );
@@ -34,6 +32,6 @@ Drawer.propTypes = {
   itemLabelAttr: React.PropTypes.string.isRequired,
   itemKeyAttr: React.PropTypes.string.isRequired,
   isDrawerOpen: React.PropTypes.bool.isRequired,
-}
+};
 
 export default Drawer;

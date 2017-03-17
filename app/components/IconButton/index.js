@@ -11,10 +11,10 @@ import styles from './styles.css';
 
 function IconButton({ onClick, icon, iconClass, buttonClass }) {
   return (
-      <div 
-        className={classNames(styles.iconButton, buttonClass)}
-        onClick={onClick}
-      >
+    <div
+      className={classNames(styles.iconButton, buttonClass)}
+      onClick={onClick}
+    >
       <FontAwesome
         className={iconClass}
         name={icon}
@@ -28,5 +28,5 @@ IconButton.propTypes = {
   onClick: React.PropTypes.func,
   iconClass: React.PropTypes.string,
   buttonClass: React.PropTypes.string,
-}
+};
 export default IconButton;

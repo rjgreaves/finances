@@ -13,7 +13,7 @@ import IconButton from '../IconButton';
 function LinkList({ links, topicId, topicName, children, startAdd }) {
   const linkNodes = links.map(l => (
     <Link
-      key={l._id}
+      key={l.id}
       link={l}
     />
   ));
@@ -22,7 +22,7 @@ function LinkList({ links, topicId, topicName, children, startAdd }) {
       <h1>{topicName}</h1>
       {linkNodes}
 
-      <IconButton 
+      <IconButton
         icon="plus"
         buttonClass={styles.button}
         iconClass={styles.icon}

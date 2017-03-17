@@ -6,7 +6,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
 import selectLoginContainer from './selectors';
 import Login from '../../components/Login';
 import { login, cancelLogin } from './actions';
@@ -15,7 +14,7 @@ export class LoginContainer extends React.Component { // eslint-disable-line rea
   render() {
     return (
       <div>
-        <Login { ...this.props} />
+        <Login {...this.props} />
       </div>
     );
   }

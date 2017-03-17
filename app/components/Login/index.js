@@ -14,36 +14,33 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
   static propTypes = {
     login: React.PropTypes.func.isRequired,
     cancelLogin: React.PropTypes.func.isRequired,
-    loginError: React.PropTypes.string
+    loginError: React.PropTypes.string,
   }
 
   state = {};
 
   login = () => {
-
     let validationFailed = false;
     const email = this.emailField.value();
     const password = this.passwordField.value();
 
-    if(!validator.validate(email)){
+    if (!validator.validate(email)) {
       this.setState({
         errorText: 'Please provide a valid email',
       });
       validationFailed = true;
-    }
-    else{
+    } else {
       this.setState({
         errorText: null,
       });
     }
 
-    if(!password) {
+    if (!password) {
       this.setState({
         passwordErrorText: 'Please provide a password',
       });
       validationFailed = true;
-    }
-    else{
+    } else {
       this.setState({
         passwordErrorText: null,
       });
@@ -52,13 +49,11 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
     if (!validationFailed) {
       this.props.login(email, password);
     }
-
   }
   render() {
-
     let serverError = null;
-    if(this.props.loginError){
-      serverError = <div className={styles.errorMessage}>{this.props.loginError}</div>
+    if (this.props.loginError) {
+      serverError = <div className={styles.errorMessage}>{this.props.loginError}</div>;
     }
 
     return (
@@ -73,20 +68,20 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
           ref={(f) => { this.emailField = f; }}
           errorText={this.state.errorText}
           type="text"
-          />
+        />
 
-          <TextInput
-            placeholder="Password"
-            ref={(f) => { this.passwordField = f; }}
-            errorText={this.state.passwordErrorText}
-            type="password"
-            />
+        <TextInput
+          placeholder="Password"
+          ref={(f) => { this.passwordField = f; }}
+          errorText={this.state.passwordErrorText}
+          type="password"
+        />
 
         {serverError}
 
         <div
           className={styles.actionContainer}
-          >
+        >
           <div
             className={styles.button}
             onClick={this.props.cancelLogin}
@@ -107,7 +102,7 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
 
 
 Login.propTypes = {
-  loginError: React.PropTypes.string
+  loginError: React.PropTypes.string,
 };
 
 export default Login;

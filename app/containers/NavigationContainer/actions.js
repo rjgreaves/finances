@@ -14,7 +14,7 @@ import {
   LOGOUT_SUCCESSFUL,
 } from './constants';
 
-export function requestTopics(){
+export function requestTopics() {
   return {
     type: REQUEST_TOPICS,
   };
@@ -30,31 +30,31 @@ export function requestTopicsSucceeded(topics) {
 export function requestTopicsFailed(message) {
   return {
     type: REQUEST_TOPICS_FAILED,
-    message: message,
+    message,
   };
 }
 
-export function selectTopic(topic){
+export function selectTopic(topic) {
   return {
     type: SELECT_TOPIC,
-    topic: topic,
+    topic,
   };
 }
 
 export function toggleDrawer() {
   return {
     type: TOGGLE_DRAWER,
-  }
+  };
 }
 
 export function logout() {
   return {
-    type: LOGOUT
-  }
+    type: LOGOUT,
+  };
 }
 
 export function logoutSuccessful() {
   return {
     type: LOGOUT_SUCCESSFUL,
-  }
+  };
 }

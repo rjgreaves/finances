@@ -6,14 +6,12 @@ const localStorageManager = {
     sessionStorage.setItem(idTokenKey, idToken);
   },
 
-  getIdToken: () => {
-    return sessionStorage.getItem(idTokenKey);
-  },
+  getIdToken: () => sessionStorage.getItem(idTokenKey),
 
   removeToken: () => {
     sessionStorage.removeItem(idTokenKey);
   },
 
-}
+};
 
 module.exports = localStorageManager;

@@ -28,7 +28,7 @@ export function addLinkSuccess(link) {
   return {
     type: ADD_LINK_SUCCESS,
     link,
-  }
+  };
 }
 
 export function addLinkFailed(link, message) {

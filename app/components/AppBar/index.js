@@ -11,7 +11,7 @@ import styles from './styles.css';
 
 function AppBar({ toggleDrawer, logout, user }) {
   const loginLink = user && user.isAuthenticated ? user.email : (<Link to="/login"> login </Link>);
-  const logoutLink = user && user.isAuthenticated ? (<a href="#" onClick={logout}>logout</a>) : "";
+  const logoutLink = user && user.isAuthenticated ? (<button onClick={logout}>logout</button>) : '';
   return (
     <div className={styles.appBar}>
       <IconButton
@@ -22,11 +22,11 @@ function AppBar({ toggleDrawer, logout, user }) {
       />
       <div
         className={styles.heading}
-        >
+      >
         Coder daily
       </div>
       <div
-      className={styles.linkContainer}
+        className={styles.linkContainer}
       >
         {loginLink}
         {logoutLink}
@@ -39,6 +39,6 @@ AppBar.propTypes = {
   toggleDrawer: React.PropTypes.func.isRequired,
   logout: React.PropTypes.func.isRequired,
   user: React.PropTypes.object,
-}
+};
 
 export default AppBar;

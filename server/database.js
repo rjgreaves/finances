@@ -1,98 +1,92 @@
-var mongoose = require("mongoose");
-var Promise = require("bluebird");
+const mongoose = require('mongoose');
 
-var uri = "mongodb://127.0.0.1/finances";
-console.log("Got Uri...");
+const uri = 'mongodb://127.0.0.1/finances';
+console.log('Got Uri...');
 
 mongoose.Promise = require('bluebird');
 
-console.log("Got Options...");
+console.log('Got Options...');
 mongoose.connect(uri);
-var db = mongoose.connection;
+const db = mongoose.connection;
 
-console.log("Created db...");
+console.log('Created db...');
 
-var TopicItem = require("./Models/TopicItem");
-var LinkItem = require("./Models/LinkItem");
-var UserItem = require("./Models/UserItem").UserItem;
+const TopicItem = require('./models/TopicItem');
 
-db.once("open", () => {
+db.once('open', () => {
+  console.log('Connected');
 
-    console.log("Connected");
-
-    var topics = [
+  const topics = [
+    {
+      name: 'libraries',
+      description: 'links to useful open source libraries',
+      links: [
         {
-            name: 'libraries',
-            description: 'links to useful open source libraries',
-            links: [
-                {
-                    description: 'The very library we are working with now',
-                    url: 'https://github.com/facebook/react',
-                    voteCount: 0,
-                    voters: [],
-                },
-                {
-                    description: 'Some old videos',
-                    url: 'http://tagtree.io',
-                    voteCount: 0,
-                    voters: [],
-                },
-            ]
+          description: 'The very library we are working with now',
+          url: 'https://github.com/facebook/react',
+          voteCount: 0,
+          voters: [],
         },
         {
-            name: 'apps',
-            description: 'links to new and exciting apps',
-            links: [
-                {
-                    description: 'An app to manage your finances',
-                    url: 'https://22seven.com',
-                    voteCount: 0,
-                    voters: [],
-                },
-            ]
+          description: 'Some old videos',
+          url: 'http://tagtree.io',
+          voteCount: 0,
+          voters: [],
         },
+      ],
+    },
+    {
+      name: 'apps',
+      description: 'links to new and exciting apps',
+      links: [
         {
-            name: 'news',
-            description: 'links to programming related news articles',
-            links: [
-                {
-                    description: 'Go find some news yourself!',
-                    url: 'https://google.com',
-                    voteCount: 0,
-                    voters: [],
-                }
+          description: 'An app to manage your finances',
+          url: 'https://22seven.com',
+          voteCount: 0,
+          voters: [],
+        },
+      ],
+    },
+    {
+      name: 'news',
+      description: 'links to programming related news articles',
+      links: [
+        {
+          description: 'Go find some news yourself!',
+          url: 'https://google.com',
+          voteCount: 0,
+          voters: [],
+        },
 
-            ]
-        }
-    ];
+      ],
+    },
+  ];
 
-    topics.forEach((item) => {
-        console.log("Adding Topic...");
-        var topicItem = new TopicItem(item);
-        console.log(topicItem);
+  topics.forEach((item) => {
+    console.log('Adding Topic...');
+    const topicItem = new TopicItem(item);
+    console.log(topicItem);
 
-        var query = { name: item.name };
+    const query = { name: item.name };
 
-        TopicItem.find(
+    TopicItem.find(
             query,
-            function (err, doc) {
-                if (err) {
+            (err, doc) => {
+              if (err) {
+                console.log(err);
+              } else if (doc.length === 0) {
+                topicItem.save(() => {
+                  if (err) {
                     console.log(err);
-                } else if (doc.length === 0) {
-                    topicItem.save((err, doc) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("Inserted Topic...");
-                        }
-                    })
-                } else {
-                    console.log(doc);
-                    console.log("Found Topic...");
-                }
+                  } else {
+                    console.log('Inserted Topic...');
+                  }
+                });
+              } else {
+                console.log(doc);
+                console.log('Found Topic...');
+              }
             }
         );
-
-    });
-
+  });
 });

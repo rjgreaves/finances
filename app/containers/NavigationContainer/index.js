@@ -7,7 +7,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import selectNavigationContainer from './selectors';
-import Navigation from '../../components/Navigation'
+import Navigation from '../../components/Navigation';
 import { requestTopics, selectTopic, toggleDrawer, logout } from './actions';
 
 export class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -21,7 +21,7 @@ export class NavigationContainer extends React.Component { // eslint-disable-lin
 
   render() {
     return (
-      <Navigation { ...this.props } />
+      <Navigation {...this.props} />
     );
   }
 }

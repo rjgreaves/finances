@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 export default function (ComposedComponent) {
-
   // If user not authenticated render out to root
 
   class Authentication extends Component {
+
+    static propTypes = {
+      authenticated: React.PropTypes.bool.isRequired,
+    }
+
     static contextTypes = {
-      router: React.PropTypes.object
+      router: React.PropTypes.object,
     };
 
     componentWillMount() {

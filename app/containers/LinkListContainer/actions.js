@@ -21,14 +21,14 @@ export function startAdd(topicId) {
 export function requestLinksSucceeded(links) {
   return {
     type: REQUEST_LINKS_SUCCEEDED,
-    links: links
+    links,
   };
 }
 
 export function requestLinksFailed(message) {
   return {
     type: REQUEST_LINKS_FAILED,
-    message: message
+    message,
   };
 }
 
@@ -36,5 +36,5 @@ export function requestLinks(topicId) {
   return {
     type: REQUEST_LINKS,
     topicId,
-  }
+  };
 }

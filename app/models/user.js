@@ -1,18 +1,11 @@
-export class User{
+export class User {
 
-    email = "";
-    isAuthenticated = false;
+  email = '';
+  isAuthenticated = false;
 
-    constructor(){
-    }
+  loggedIn(email) {
+    this.email = email;
+    this.isAuthenticated = true;
+  }
 
-    loggedIn(email) {
-        this.email = email;
-        this.isAuthenticated = true;
-    }
-
-    loggedOut() {
-        this.email = "",
-        this.isAuthenticated = false;
-    }
 }

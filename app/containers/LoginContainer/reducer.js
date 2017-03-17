@@ -9,9 +9,6 @@ import {
   LOGIN,
   LOGIN_FAILED,
 } from './constants';
-import {
-  LOGOUT_SUCCESSFUL,
-} from "../NavigationContainer/constants"
 
 const initialState = fromJS({});
 

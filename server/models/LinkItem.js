@@ -1,15 +1,15 @@
-var mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var LinkItemSchema = new Schema ({
-    description: String,
-    url: String,
-    voteCount: Number,
-    voters: Array,
+const LinkItemSchema = new Schema({
+  description: String,
+  url: String,
+  voteCount: Number,
+  voters: Array,
 });
 
-var LinkItem = mongoose.model("LinkItem", LinkItemSchema);
+const LinkItem = mongoose.model('LinkItem', LinkItemSchema);
 
 module.exports = LinkItemSchema;
 module.exports = LinkItem;

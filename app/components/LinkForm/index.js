@@ -10,13 +10,13 @@ import styles from './styles.css';
 import TextInput from '../TextInput';
 
 class LinkForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  
+
   static propTypes = {
     addLink: React.PropTypes.func.isRequired,
     topicId: React.PropTypes.string.isRequired,
     addLinkCancelled: React.PropTypes.func.isRequired,
   }
-  
+
   state = {
     urlError: '',
     descriptionError: '',
@@ -28,11 +28,11 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
     let urlError = null;
     let descriptionError = null;
 
-    if(!url) {
+    if (!url) {
       urlError = 'Please provide a valid URL';
     }
 
-    if(!description) {
+    if (!description) {
       descriptionError = 'Please provide a valid description';
     }
 
@@ -41,7 +41,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
       descriptionError,
     });
 
-    if(urlError || descriptionError) {
+    if (urlError || descriptionError) {
       return;
     }
 
@@ -50,46 +50,44 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
       url,
       description,
     });
-
   }
 
   render() {
-
     return (
       <div className={styles.overlay}>
         <div className={styles.linkForm}>
           <div
             className={styles.heading}
-            >
+          >
             Add a link
-        </div>
+          </div>
           <TextInput
             placeholder="URL"
             className={styles.input}
             errorText={this.state.urlError}
-            ref={(f) => { this.url = f}}
+            ref={(f) => { this.url = f; }}
           />
 
           <TextInput
             placeholder="Description"
             className={styles.input}
             errorText={this.state.descriptionError}
-            ref={(f) => { this.description = f}}
+            ref={(f) => { this.description = f; }}
           />
 
           <div
             className={styles.actionContainer}
-            >
+          >
             <div
               className={styles.button}
               onClick={this.props.addLinkCancelled}
-              >
+            >
               cancel
             </div>
             <div
               className={styles.button}
               onClick={this.onAdd}
-              >
+            >
               add
             </div>
           </div>

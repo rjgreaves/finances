@@ -12,12 +12,12 @@ import Drawer from '../Drawer';
 function Navigation({ topics, selectTopic, toggleDrawer, isDrawerOpen, user, logout }) {
   return (
     <div className={styles.navigation}>
-      <AppBar 
+      <AppBar
         toggleDrawer={toggleDrawer}
         user={user}
         logout={logout}
       />
-      <Drawer 
+      <Drawer
         items={topics}
         selectItem={selectTopic}
         itemLabelAttr="name"
@@ -40,6 +40,6 @@ Navigation.propTypes = {
   isDrawerOpen: React.PropTypes.bool.isRequired,
   user: React.PropTypes.object,
   logout: React.PropTypes.func.isRequired,
-}
+};
 
 export default Navigation;
