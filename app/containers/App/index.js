@@ -15,7 +15,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import selectApp from './selectors';
 
-import localStorageManager from 'localStorageManager';
+import { getIdToken } from '../../localStorageManager';
 import { authenticateToken as authenticateTokenAction, startLogin } from './actions';
 
 import styles from './styles.css';
@@ -30,12 +30,13 @@ export class AppContainer extends React.Component { // eslint-disable-line react
 
   componentWillMount() {
     // Check for token and update application state if required
-    const token = localStorageManager.getIdToken();
-    if (token) {
+    const token = getIdToken();
+    console.log(`token=${token}`);
+    if (token === null) {
+      this.props.startLogin();
+    } else {
       console.log('Dispatching auth token request...');
       this.props.authenticateToken(token);
-    } else {
-      this.props.startLogin();
     }
   }
 

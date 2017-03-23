@@ -5,7 +5,7 @@ import { takeLatest } from 'redux-saga';
 import { goBack } from 'react-router-redux';
 import { login } from '../../api';
 import { loginFailed, loginSuccessful } from './actions';
-import localStorageManager from '../../localStorageManager';
+import { setIdToken } from '../../localStorageManager';
 
 // Individual exports for testing
 
@@ -15,7 +15,7 @@ function* performLogin(action) {
     if (response.errorMessage) {
       throw new Error(response.errorMessage);
     } else {
-      localStorageManager.setIdToken(response.token);
+      setIdToken(response.token);
       yield put(loginSuccessful(action.email));
       yield put(goBack());
     }

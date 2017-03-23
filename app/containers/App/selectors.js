@@ -33,7 +33,7 @@ const selectAppDomain = () => state => state.get('AppContainer');
 
 const selectApp = () => createSelector(
   selectAppDomain(),
-  (substate) => substate ? substate.toJS() : {}
+  (substate) => (substate ? substate.toJS() : {})
 );
 
 export default selectApp;

@@ -7,19 +7,9 @@ module.exports = {
 
   registerRoutes(app) {
     app.post('/api/token', (req, res) => {
-      const token = req.body.token;
-      try {
-        tokenService.isAuthenticated(token, (decoded) => {
-          if (decoded) {
-            // ClaimsHelper.hasClaim(ClaimTypes.UserIdClaimType);
-            return res.status(200);
-          }
-          return res.status(401);
-        });
-        return res.status(401);
-      } catch (e) {
-        return res.status(500);
-      }
+      tokenService.isAuthenticated(req, res, () =>
+        res.status(200)
+      );
     });
 
     app.post('/api/login', (req, res) =>

@@ -36,8 +36,9 @@ export function login(email, password) {
   return ApiConfig.fetchPost('login', `email=${email}&password=${password}`, headers);
 }
 
-export function authenticateTokenWithServer(token) {
-  return ApiConfig.fetchPost('token', `token=${token}`);
+export function authenticateTokenWithServer() {
+  const config = ApiConfig.getHeader(true);
+  return ApiConfig.fetchPost('token', config);
 }
 
 export function register(email, password) {

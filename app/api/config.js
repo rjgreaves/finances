@@ -1,16 +1,15 @@
 const baseUrl = 'http://localhost:3000/api/';
 import { NOT_AUTHORISED } from '../containers/Authorization/constants';
-import localStorageManager from '../localStorageManager';
+import { getIdToken } from '../localStorageManager';
 import dispatch from 'redux/es/createStore';
 
 export function getHeader(isAuthenticated = false, contentType = 'application/json') {
   const headers = {
     Accept: 'application/json',
     'Content-Type': contentType,
-        // 'Content-Type': 'application/x-www-form-urlencoded'
   };
   if (isAuthenticated) {
-    headers['x-access-token'] = `${localStorageManager.getIdToken()}`;
+    headers['x-access-token'] = `${getIdToken()}`;
   }
   return headers;
 }

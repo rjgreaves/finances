@@ -1,17 +1,13 @@
 const idTokenKey = 'id_token';
 
-const localStorageManager = {
+export function setIdToken(token) {
+  sessionStorage.setItem(idTokenKey, token);
+}
 
-  setIdToken: (idToken) => {
-    sessionStorage.setItem(idTokenKey, idToken);
-  },
+export function getIdToken() {
+  return sessionStorage.getItem(idTokenKey);
+}
 
-  getIdToken: () => sessionStorage.getItem(idTokenKey),
-
-  removeToken: () => {
-    sessionStorage.removeItem(idTokenKey);
-  },
-
-};
-
-module.exports = localStorageManager;
+export function removeIdToken() {
+  sessionStorage.removeItem(idTokenKey);
+}
