@@ -36,7 +36,7 @@ export class AppContainer extends React.Component { // eslint-disable-line react
       this.props.startLogin();
     } else {
       console.log('Dispatching auth token request...');
-      this.props.authenticateToken(token);
+      this.props.authenticateToken();
     }
   }
 

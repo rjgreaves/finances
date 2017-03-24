@@ -27,8 +27,8 @@ export function getUrl(url) {
   return `${baseUrl}${url}`;
 }
 
-export function fetchGet(url, body, headers = null) {
-  const config = getConfig('GET', body, headers);
+export function fetchGet(url, headers = null) {
+  const config = getConfig('GET', null, headers);
   return fetch(getUrl(url), config)
       .then((response) => {
         if (response.status === 401) {

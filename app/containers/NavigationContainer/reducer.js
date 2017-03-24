@@ -34,12 +34,8 @@ function navigationContainerReducer(state = initialState, action) {
     case TOGGLE_DRAWER:
       return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
     case LOGIN_SUCCESSFUL: {
-      let user = state.get('user');
-      if (user) {
-        user.loggedIn(action.email);
-      } else {
-        user = new User();
-      }
+      const user = new User();
+      user.loggedIn(action.email);
       return state.set('user', user);
     }
     case LOGOUT_SUCCESSFUL:

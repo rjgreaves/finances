@@ -17,7 +17,6 @@ function* performLogin(action) {
     } else {
       setIdToken(response.token);
       yield put(loginSuccessful(action.email));
-      yield put(goBack());
     }
   } catch (e) {
     yield put(loginFailed(e.message));

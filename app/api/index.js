@@ -4,7 +4,6 @@ export function fetchTopicsFromServer() {
   const config = ApiConfig.getHeader(true);
   return ApiConfig.fetchGet(
         'topics',
-        {},
         config
     );
 }
@@ -13,7 +12,6 @@ export function fetchLinksFromServer(topicId) {
   const config = ApiConfig.getHeader(true);
   return ApiConfig.fetchGet(
         `topics/${topicId}/links`,
-        {},
         config
     );
 }
@@ -38,7 +36,8 @@ export function login(email, password) {
 
 export function authenticateTokenWithServer() {
   const config = ApiConfig.getHeader(true);
-  return ApiConfig.fetchPost('token', config);
+  config['cache-control'] = 'no-cache';
+  return ApiConfig.fetchGet('token', config);
 }
 
 export function register(email, password) {

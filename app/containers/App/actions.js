@@ -3,10 +3,9 @@ import {
   START_LOGIN,
 } from './constants';
 
-export function authenticateToken(token) {
+export function authenticateToken() {
   return {
     type: AUTHENTICATE_TOKEN,
-    token,
   };
 }
 

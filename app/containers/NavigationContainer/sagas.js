@@ -6,6 +6,7 @@ import { requestTopicsSucceeded, requestTopicsFailed, logoutSuccessful } from '.
 import { push } from 'react-router-redux';
 import selectNavigationContainer from './selectors';
 import { fetchTopicsFromServer } from '../../api/index';
+import { removeIdToken } from '../../localStorageManager';
 
 function* fetchTopics() {
   try {
@@ -41,7 +42,8 @@ export function* fetchTopicsSaga() {
 }
 
 function* performLogout() {
-    // TODO: Call serverside logout??
+  // TODO: Call serverside logout??
+  removeIdToken();
   yield put(logoutSuccessful());
 }
 

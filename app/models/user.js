@@ -8,4 +8,9 @@ export class User {
     this.isAuthenticated = true;
   }
 
+  loggedOut() {
+    this.email = '';
+    this.isAuthenticated = false;
+  }
+
 }
