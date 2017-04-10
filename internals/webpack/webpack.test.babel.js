@@ -26,6 +26,7 @@ module.exports = {
     preLoaders: [
       { test: /\.js$/,
         loader: 'isparta',
+        exclude: /node_modules/,
         include: path.resolve('app/'),
       },
     ],
