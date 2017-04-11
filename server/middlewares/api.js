@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 
-const TopicRoutes = require('./routes/topicRoutes');
-const LinkRoutes = require('./routes/linkRoutes');
+const NewsletterRoutes = require('./routes/newsletterRoutes');
+const LinkRoutes = require('./routes/articleRoutes');
 const SecurityRoutes = require('./routes/securityRoutes');
 
 // USAGE
@@ -23,7 +23,7 @@ module.exports = (app) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  TopicRoutes.registerRoutes(app);
+  NewsletterRoutes.registerRoutes(app);
   LinkRoutes.registerRoutes(app);
   SecurityRoutes.registerRoutes(app);
 };

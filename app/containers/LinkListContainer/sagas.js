@@ -8,7 +8,7 @@ import { fetchLinksFromServer } from '../../api/index';
 
 function* fetchLinks(action) {
   try {
-    const links = yield call(fetchLinksFromServer, action.topicId);
+    const links = yield call(fetchLinksFromServer, action.newsletterId);
     yield put(requestLinksSucceeded(links));
   } catch (e) {
     console.log(e);
@@ -17,7 +17,7 @@ function* fetchLinks(action) {
 }
 
 function* startAdd(action) {
-  yield put(push(`/topics/${action.topicId}/add`));
+  yield put(push(`/newsletters/${action.newsletterId}/add`));
 }
 
 export function* startAddSaga() {

@@ -1,12 +1,12 @@
-const TopicItem = require('../../models/TopicItem');
+const NewsletterItem = require('../../models/NewsletterItem');
 const tokenService = require('../../tokenService');
 
 module.exports = {
 
   registerRoutes(app) {
-    app.get('/api/topics', (req, res) => {
+    app.get('/api/newsletters', (req, res) => {
       tokenService.isAuthenticated(req, res, () =>
-        TopicItem.find(
+        NewsletterItem.find(
           {},
           (err, docs) => {
             if (err) {
@@ -18,8 +18,8 @@ module.exports = {
       );
     });
 
-    app.get('/api/topics/:id/links', (req, res) => {
-      TopicItem.findOne(
+    app.get('/api/newsletters/:id/links', (req, res) => {
+      NewsletterItem.findOne(
         { _id: req.params.id },
         { _id: 0, links: 1 },
         (err, docs) => {
@@ -29,9 +29,9 @@ module.exports = {
       );
     });
 
-    app.post('/api/topics/:id/links', (req, res) => {
+    app.post('/api/newsletters/:id/links', (req, res) => {
       tokenService.isAuthenticated(req, res, () => {
-        TopicItem.findOne(
+        NewsletterItem.findOne(
           { _id: req.params.id },
           (err, doc) => { // eslint-disable-line consistent-return
             if (err) return res.sendStatus(500);

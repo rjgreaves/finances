@@ -14,30 +14,30 @@ import {
   LOGOUT_SUCCESSFUL,
 } from './constants';
 
-export function requestTopics() {
+export function requestNewsletters() {
   return {
     type: REQUEST_TOPICS,
   };
 }
 
-export function requestTopicsSucceeded(topics) {
+export function requestNewslettersSucceeded(newsletters) {
   return {
     type: REQUEST_TOPICS_SUCEEDED,
-    topics,
+    newsletters,
   };
 }
 
-export function requestTopicsFailed(message) {
+export function requestNewslettersFailed(message) {
   return {
     type: REQUEST_TOPICS_FAILED,
     message,
   };
 }
 
-export function selectTopic(topic) {
+export function selectNewsletter(newsletter) {
   return {
     type: SELECT_TOPIC,
-    topic,
+    newsletter,
   };
 }
 

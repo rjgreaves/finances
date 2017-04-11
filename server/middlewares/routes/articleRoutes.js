@@ -1,10 +1,10 @@
-const LinkItem = require('../../models/LinkItem').LinkItem;
+const ArticleItem = require('../../models/ArticleItem').ArticleItem;
 
 module.exports = {
 
   registerRoutes(app) {
     app.post('/api/links/:id/vote', (req, res) => {
-      const link = LinkItem.find({ _id: req.params.id }).value();
+      const link = ArticleItem.find({ _id: req.params.id }).value();
       if (link.voters && link.voters.indexOf(req.body.email) > -1) {
         return res.send(403);
       }

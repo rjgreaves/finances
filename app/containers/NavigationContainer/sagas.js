@@ -2,43 +2,43 @@
 import { REQUEST_TOPICS, SELECT_TOPIC, REQUEST_TOPICS_SUCEEDED, LOGOUT } from './constants';
 import { takeLatest } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
-import { requestTopicsSucceeded, requestTopicsFailed, logoutSuccessful } from './actions';
+import { requestNewslettersSucceeded, requestNewslettersFailed, logoutSuccessful } from './actions';
 import { push } from 'react-router-redux';
 import selectNavigationContainer from './selectors';
-import { fetchTopicsFromServer } from '../../api/index';
+import { fetchNewslettersFromServer } from '../../api/index';
 import { removeIdToken } from '../../localStorageManager';
 
-function* fetchTopics() {
+function* fetchNewsletters() {
   try {
-    const topics = yield call(fetchTopicsFromServer);
-    yield put(requestTopicsSucceeded(topics));
+    const newsletters = yield call(fetchNewslettersFromServer);
+    yield put(requestNewslettersSucceeded(newsletters));
   } catch (e) {
-    yield put(requestTopicsFailed(e.messages));
+    yield put(requestNewslettersFailed(e.messages));
   }
 }
 
-function* pushTopic(action) {
-  yield put(push(`/topics/${action.topic.id}`));
+function* pushNewsletter(action) {
+  yield put(push(`/newsletters/${action.newsletter.id}`));
 }
 
-export function* selectDefaultTopicSaga() {
-  yield* takeLatest(REQUEST_TOPICS_SUCEEDED, selectDefaultTopic);
+export function* selectDefaultNewsletterSaga() {
+  yield* takeLatest(REQUEST_TOPICS_SUCEEDED, selectDefaultNewsletter);
 }
 
-function* selectDefaultTopic() {
+function* selectDefaultNewsletter() {
   const state = yield select(selectNavigationContainer());
-  if (!state.selectedTopic && state.routerLocation === '/') {
-    yield put(push(`/topics/${state.topics[0].id}`));
+  if (!state.selectedNewsletter && state.routerLocation === '/') {
+    yield put(push(`/newsletters/${state.newsletters[0].id}`));
   }
 }
 
-export function* selectTopicSaga() {
-  yield* takeLatest(SELECT_TOPIC, pushTopic);
+export function* selectNewsletterSaga() {
+  yield* takeLatest(SELECT_TOPIC, pushNewsletter);
 }
 
 // Individual exports for testing
-export function* fetchTopicsSaga() {
-  yield* takeLatest(REQUEST_TOPICS, fetchTopics);
+export function* fetchNewslettersSaga() {
+  yield* takeLatest(REQUEST_TOPICS, fetchNewsletters);
 }
 
 function* performLogout() {
@@ -53,8 +53,8 @@ export function* doLogoutSaga() {
 
 // All sagas to be loaded
 export default [
-  fetchTopicsSaga,
-  selectTopicSaga,
+  fetchNewslettersSaga,
+  selectNewsletterSaga,
   doLogoutSaga,
-  selectDefaultTopicSaga,
+  selectDefaultNewsletterSaga,
 ];

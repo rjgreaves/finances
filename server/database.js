@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://127.0.0.1/finances';
+const uri = 'mongodb://127.0.0.1:27017/newsletters';
 console.log('Got Uri...');
 
 mongoose.Promise = require('bluebird');
@@ -11,80 +11,76 @@ const db = mongoose.connection;
 
 console.log('Created db...');
 
-const TopicItem = require('./models/TopicItem');
+const NewsletterItem = require('./models/NewsletterItem');
 
 db.once('open', () => {
   console.log('Connected');
 
-  const topics = [
+  const newsletters = [
     {
-      name: 'libraries',
-      description: 'links to useful open source libraries',
-      links: [
+      year: 2017,
+      month: 4,
+      name: 'Awareness Week',
+      nextSubmissionDeadline: '2017-04-12',
+      articles: [
         {
-          description: 'The very library we are working with now',
-          url: 'https://github.com/facebook/react',
-          voteCount: 0,
-          voters: [],
+          description: 'Gurdwara - Parkinson’s Information morning',
+          startDate: '2017-04-02',
+          startTime: '10:00',
+          endTime: '13:00',
         },
         {
-          description: 'Some old videos',
-          url: 'http://tagtree.io',
-          voteCount: 0,
-          voters: [],
+          description: 'A display at Little Eaton Garden Centre. Any volunteers to share the day would help.',
+          startDate: '2017-04-07',
+          startTime: '11:00',
+          endTime: '15:00',
+          contactDetails: [
+            {
+              name: 'Peter Shaffery',
+              emailAddress: 'pgs1937@hotmail.com',
+              telephone: '01332 832777',
+            },
+          ],
         },
-      ],
-    },
-    {
-      name: 'apps',
-      description: 'links to new and exciting apps',
-      links: [
         {
-          description: 'An app to manage your finances',
-          url: 'https://22seven.com',
-          voteCount: 0,
-          voters: [],
+          description: 'A Treats Tombola, with an Information stand is to be held on the Main Corridor of London Road Community Hospital. Please let Frank or Janet Smith know if you can help with cakes, buns or have items to donate.',
+          startDate: '2017-04-07',
+          contactDetails: [
+            {
+              name: 'Frank Smith',
+            },
+            {
+              name: 'Janet Smith',
+            },
+          ],
         },
-      ],
-    },
-    {
-      name: 'news',
-      description: 'links to programming related news articles',
-      links: [
-        {
-          description: 'Go find some news yourself!',
-          url: 'https://google.com',
-          voteCount: 0,
-          voters: [],
-        },
-
       ],
     },
   ];
 
-  topics.forEach((item) => {
-    console.log('Adding Topic...');
-    const topicItem = new TopicItem(item);
-    console.log(topicItem);
+  newsletters.forEach((item) => {
+    console.log('Adding Newsletter...');
+    const newsletterItem = new NewsletterItem(item);
+    console.log(newsletterItem);
 
     const query = { name: item.name };
 
-    TopicItem.find(
+    NewsletterItem.find(
             query,
             (err, doc) => {
               if (err) {
                 console.log(err);
               } else if (doc.length === 0) {
-                topicItem.save(() => {
-                  if (err) {
-                    console.log(err);
+                newsletterItem.save((saveErr) => {
+                  if (saveErr) {
+                    console.log(saveErr);
                   } else {
-                    console.log('Inserted Topic...');
+                    console.log('Inserted Newsletter...');
                   }
                 });
               } else {
                 console.log(doc);
-                console.log('Found Topic...');
+                console.log('Found Newsletter...');
               }
             }
         );

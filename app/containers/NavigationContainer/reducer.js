@@ -18,7 +18,7 @@ import {
 import { User } from '../../models/user';
 
 const initialState = fromJS({
-  topics: [],
+  newsletters: [],
   isDrawerOpen: false,
   user: new User(),
 });
@@ -26,11 +26,11 @@ const initialState = fromJS({
 function navigationContainerReducer(state = initialState, action) {
   switch (action.type) {
     case REQUEST_TOPICS_SUCEEDED:
-      return state.set('topics', action.topics);
+      return state.set('newsletters', action.newsletters);
     case '@@router/LOCATION_CHANGE':
       return state.set('routerLocation', action.payload.pathname);
     case SELECT_TOPIC:
-      return state.set('selectedTopic', action.topic).set('isDrawerOpen', false);
+      return state.set('selectedNewsletter', action.newsletter).set('isDrawerOpen', false);
     case TOGGLE_DRAWER:
       return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
     case LOGIN_SUCCESSFUL: {

@@ -50,7 +50,27 @@ export default function createRoutes(store) {
       },
       childRoutes: [
         {
-          path: '/topics/:topicId',
+          path: '/newsletters',
+          name: 'newsletterListContainer',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/NewsletterListContainer/reducer'),
+              System.import('containers/NewsletterListContainer/sagas'),
+              System.import('containers/NewsletterListContainer'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('newsletterListContainer', reducer.default);
+              injectSagas('newsletterListContainer', sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        }, {
+          path: '/newsletters/:newsletterId',
           name: 'linkListContainer',
           getComponent(nextState, cb) {
             const importModules = Promise.all([
@@ -71,7 +91,7 @@ export default function createRoutes(store) {
           },
           childRoutes: [
             {
-              path: '/topics/:topicId/add',
+              path: '/newsletters/:newsletterId/add',
               name: 'linkFormContainer',
               getComponent(nextState, cb) {
                 const importModules = Promise.all([

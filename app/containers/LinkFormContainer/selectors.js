@@ -8,8 +8,8 @@ const selectLinkFormContainerDomain = () => state => state.get('linkFormContaine
 /**
  * Other specific selectors
  */
-const selectRouteTopic = () => (state, props) =>
-  props.params.topicId;
+const selectRouteNewsletter = () => (state, props) =>
+  props.params.newsletterId;
 
 /**
  * Default selector used by LinkFormContainer
@@ -17,8 +17,8 @@ const selectRouteTopic = () => (state, props) =>
 
 const selectLinkFormContainer = () => createSelector(
   selectLinkFormContainerDomain(),
-  selectRouteTopic(),
-  (substate, topicId) => Object.assign(substate.toJS(), { topicId })
+  selectRouteNewsletter(),
+  (substate, newsletterId) => Object.assign(substate.toJS(), { newsletterId })
 );
 
 export default selectLinkFormContainer;

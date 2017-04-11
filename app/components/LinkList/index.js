@@ -10,7 +10,7 @@ import styles from './styles.css';
 import Link from '../Link';
 import IconButton from '../IconButton';
 
-function LinkList({ links, topicId, topicName, children, startAdd }) {
+function LinkList({ links, newsletterId, newsletterName, children, startAdd }) {
   const linkNodes = links.map(l => (
     <Link
       key={l.id}
@@ -19,14 +19,14 @@ function LinkList({ links, topicId, topicName, children, startAdd }) {
   ));
   return (
     <div className={styles.linkList}>
-      <h1>{topicName}</h1>
+      <h1>{newsletterName}</h1>
       {linkNodes}
 
       <IconButton
         icon="plus"
         buttonClass={styles.button}
         iconClass={styles.icon}
-        onClick={() => startAdd(topicId)}
+        onClick={() => startAdd(newsletterId)}
       />
 
       {children}
@@ -38,8 +38,8 @@ function LinkList({ links, topicId, topicName, children, startAdd }) {
 LinkList.propTypes = {
   startAdd: React.PropTypes.func.isRequired,
   children: React.PropTypes.element,
-  topicName: React.PropTypes.string.isRequired,
-  topicId: React.PropTypes.string.isRequired,
+  newsletterName: React.PropTypes.string.isRequired,
+  newsletterId: React.PropTypes.string.isRequired,
   links: React.PropTypes.arrayOf(React.PropTypes.shape({
     description: React.PropTypes.string.isRequired,
     url: React.PropTypes.string.isRequired,

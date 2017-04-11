@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 const UserItemSchema = new mongoose.Schema({
   email: String,

@@ -13,22 +13,22 @@ import { requestLinks, startAdd } from './actions';
 export class LinkListContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    topicId: React.PropTypes.string.isRequired,
-    topicName: React.PropTypes.string.isRequired,
+    newsletterId: React.PropTypes.string.isRequired,
+    newsletterName: React.PropTypes.string.isRequired,
     requestLinks: React.PropTypes.func.isRequired,
     //startAdd: React.PropTypes.func.isRequired,
   }
 
   componentWillMount() {
-    console.log(`TopicName: ${this.props.topicName}`);
-    if (this.props.topicId) {
-      this.props.requestLinks(this.props.topicId);
+    console.log(`NewsletterName: ${this.props.newsletterName}`);
+    if (this.props.newsletterId) {
+      this.props.requestLinks(this.props.newsletterId);
     }
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.topicId !== this.props.topicId) {
-      this.props.requestLinks(newProps.topicId);
+    if (newProps.newsletterId !== this.props.newsletterId) {
+      this.props.requestLinks(newProps.newsletterId);
     }
   }
 
@@ -43,8 +43,8 @@ const mapStateToProps = selectLinkListContainer();
 
 function mapDispatchToProps(dispatch) {
   return {
-    requestLinks: (topicId) => dispatch(requestLinks(topicId)),
-    startAdd: (topicId) => dispatch(startAdd(topicId)),
+    requestLinks: (newsletterId) => dispatch(requestLinks(newsletterId)),
+    startAdd: (newsletterId) => dispatch(startAdd(newsletterId)),
   };
 }
 

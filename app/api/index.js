@@ -1,29 +1,29 @@
 const ApiConfig = require('./config');
 
-export function fetchTopicsFromServer() {
+export function fetchNewslettersFromServer() {
   const config = ApiConfig.getHeader(true);
   return ApiConfig.fetchGet(
-        'topics',
+        'newsletters',
         config
     );
 }
 
-export function fetchLinksFromServer(topicId) {
+export function fetchLinksFromServer(newsletterId) {
   const config = ApiConfig.getHeader(true);
   return ApiConfig.fetchGet(
-        `topics/${topicId}/links`,
+        `newsletters/${newsletterId}/links`,
         config
     );
 }
 
-export function createLink({ topicId, url, description }) {
+export function createLink({ newsletterId, url, description }) {
   const config = ApiConfig.getHeader(true);
   return ApiConfig.fetchPost(
-        `topics/${topicId}/links`,
+        `newsletters/${newsletterId}/links`,
         JSON.stringify({
           url,
           description,
-          topicId,
+          newsletterId,
         }),
         config
     );

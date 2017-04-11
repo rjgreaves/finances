@@ -10,15 +10,15 @@ const selectLinkListContainerDomain = () => state => state.get('linkListContaine
  * Other specific selectors
  */
 
-const selectRouteTopic = () => (state, props) =>
-  props.params.topicId;
+const selectRouteNewsletter = () => (state, props) =>
+  props.params.newsletterId;
 
-const selectTopic = () => createSelector(
+const selectNewsletter = () => createSelector(
   selectNavigationContainer(),
-  selectRouteTopic(),
-  (navigationState, routeTopicId) => {
-    const selectedTopic = navigationState.topics.find(t => t.id === routeTopicId);
-    return selectedTopic || {
+  selectRouteNewsletter(),
+  (navigationState, routeNewsletterId) => {
+    const selectedNewsletter = navigationState.newsletters.find(t => t.id === routeNewsletterId);
+    return selectedNewsletter || {
       name: '',
       _id: '',
     };
@@ -31,9 +31,9 @@ const selectTopic = () => createSelector(
 
 const selectLinkListContainer = () => createSelector(
   selectLinkListContainerDomain(),
-  selectTopic(),
-  (substate, topic) =>
-    Object.assign(substate.toJS(), { topicId: topic.id, topicName: topic.name })
+  selectNewsletter(),
+  (substate, newsletter) =>
+    Object.assign(substate.toJS(), { newsletterId: newsletter.id, newsletterName: newsletter.name })
 );
 
 export default selectLinkListContainer;

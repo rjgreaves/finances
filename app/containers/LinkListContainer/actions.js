@@ -11,10 +11,10 @@ import {
   START_ADD,
 } from './constants';
 
-export function startAdd(topicId) {
+export function startAdd(newsletterId) {
   return {
     type: START_ADD,
-    topicId,
+    newsletterId,
   };
 }
 
@@ -32,9 +32,9 @@ export function requestLinksFailed(message) {
   };
 }
 
-export function requestLinks(topicId) {
+export function requestLinks(newsletterId) {
   return {
     type: REQUEST_LINKS,
-    topicId,
+    newsletterId,
   };
 }

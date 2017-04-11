@@ -7,7 +7,7 @@ and/or watch this [free video tutorial series](https://egghead.io/series/getting
 ## Usage
 
 See above! As minimal as Redux is, the challenge it addresses - app state
-management - is a complex topic that is too involved to properly discuss here.
+management - is a complex newsletter that is too involved to properly discuss here.
 
 ## Removing redux
 

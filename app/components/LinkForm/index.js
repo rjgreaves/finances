@@ -13,7 +13,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
 
   static propTypes = {
     addLink: React.PropTypes.func.isRequired,
-    topicId: React.PropTypes.string.isRequired,
+    newsletterId: React.PropTypes.string.isRequired,
     addLinkCancelled: React.PropTypes.func.isRequired,
   }
 
@@ -46,7 +46,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
     }
 
     this.props.addLink({
-      topicId: this.props.topicId,
+      newsletterId: this.props.newsletterId,
       url,
       description,
     });
